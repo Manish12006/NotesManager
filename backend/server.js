@@ -1,3 +1,10 @@
+const mongoose = require("mongoose");
+require("dotenv").config();
+
+mongoose.connect(process.env.MONGO_URI)
+.then(()=> console.log("Mongoose connected"))
+.catch((err)=> console.log(err))
+
 const express = require("express");
 const app = express();
 app.get("/", (req,res)=>{
