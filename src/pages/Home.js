@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
-import { getAllNotes, deleteNote } from "../services/noteService";
+import { getAllNotes, deleteNote, searchNotes } from "../services/noteService";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Home = () => {
   const navigate = useNavigate();
   const [notes, setNotes] = useState([]);
+  const [search, setSearch] = useState("");
   useEffect(() => {
     fetchNotes();
 
@@ -39,6 +40,30 @@ const Home = () => {
     }
   };
 
+  const handleSearch = async (value) => {
+
+    setSearch(value);
+
+    try {
+
+      if (value.trim() === "") {
+
+        fetchNotes();
+
+      } else {
+
+        const data = await searchNotes(value);
+        setNotes(data);
+
+      }
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+  };
+
 
   return (
     <div className="home">
@@ -61,6 +86,8 @@ const Home = () => {
         <input
           type="text"
           placeholder="Search notes..."
+          value={search}
+          onChange={(e) => handleSearch(e.target.value)}
         />
       </div>
 

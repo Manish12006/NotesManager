@@ -26,3 +26,8 @@ export const updateNote = async (id, noteData) => {
     const response = await axios.put(`${API}/${id}`, noteData);
     return response.data;
 };
+
+export const searchNotes = async (query) => {
+    const response = await axios.get(`${API}/search/query?q=${query}`);
+    return response.data;
+};
