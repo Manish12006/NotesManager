@@ -109,59 +109,80 @@ const Home = () => {
 
 
         {
-          notes.map((note, index) => (
+          notes.length > 0 ? (
 
-            <div
-              className="note-card"
-              key={note._id}
+            notes.map((note, index) => (
 
-            >
+              <div
+                className="note-card"
+                key={note._id}
+              >
 
-              <h3>{note.title}</h3>
+                <h3>{note.title}</h3>
 
-              <p>
-                {note.content}
-              </p>
+                <p>
+                  {note.content}
+                </p>
 
-              <div className="note-footer">
-                <div className="note-dates">
-                  <span>
-                    Created: &nbsp;
-                    {
-                      new Date(note.createdAt).toLocaleDateString("en-GB", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                      })
-                    }
-                  </span>
+                <div className="note-footer">
 
-                  <span>
-                    Updated: &nbsp;
-                    {
-                      new Date(note.updatedAt).toLocaleDateString("en-GB", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                      })
-                    }
-                  </span>
-                </div>
+                  <div className="note-dates">
 
-                <div className="note-actions">
-                  <button onClick={() => navigate(`/edit/${note._id}`)}>
-                    Edit
-                  </button>
-                  <button onClick={() => handleDelete(note._id)}>
-                    Delete
-                  </button>
+                    <span>
+                      Created:&nbsp;
+                      {
+                        new Date(note.createdAt).toLocaleDateString("en-GB", {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                        })
+                      }
+                    </span>
+
+                    <span>
+                      Updated:&nbsp;
+                      {
+                        new Date(note.updatedAt).toLocaleDateString("en-GB", {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                        })
+                      }
+                    </span>
+
+                  </div>
+
+                  <div className="note-actions">
+
+                    <button onClick={() => navigate(`/edit/${note._id}`)}>
+                      Edit
+                    </button>
+
+                    <button onClick={() => handleDelete(note._id)}>
+                      Delete
+                    </button>
+
+                  </div>
+
                 </div>
 
               </div>
 
+            ))
+
+          ) : (
+
+            <div className="empty-notes">
+
+              <h2>No Notes Found</h2>
+              <br></br>
+              <p>
+                Start by creating your first note.
+              </p>
+
             </div>
 
-          ))
+          )
         }
 
 
