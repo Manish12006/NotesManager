@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
-import { getAllNotes } from "../services/noteService";
+import { getAllNotes, deleteNote } from "../services/noteService";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -20,6 +21,24 @@ const Home = () => {
       console.log(error);
     }
   }
+
+  const handleDelete = async (id) => {
+
+    try {
+
+      await deleteNote(id);
+
+      setNotes(notes.filter((note) => note._id !== id));
+
+      toast.success("Note deleted successfully");
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+  };
+
 
   return (
     <div className="home">
@@ -66,8 +85,12 @@ const Home = () => {
                 </span>
 
                 <div className="note-actions">
-                  <button>Edit</button>
-                  <button>Delete</button>
+                  <button onClick={() => navigate(`/edit/${note._id}`)}>
+                    Edit
+                  </button>
+                  <button onClick={() => handleDelete(note._id)}>
+                    Delete
+                  </button>
                 </div>
 
               </div>
