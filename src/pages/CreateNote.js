@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import "./CreateNote.css";
 
 import { createNote } from "../services/noteService";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const CreateNote = () => {
 
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
 
@@ -22,7 +26,9 @@ const CreateNote = () => {
             setTitle("");
             setContent("");
 
-            alert("Note Created");
+            toast.success("Note added successfully");
+
+            navigate("/");
 
         } catch (error) {
 
