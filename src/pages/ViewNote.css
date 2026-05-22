@@ -1,0 +1,46 @@
+.view-note {
+    min-height: 100vh;
+    background: #f5f7fb;
+    padding: 40px;
+}
+
+.back-btn {
+    border: none;
+    background: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.view-note-card {
+    background: white;
+    max-width: 900px;
+    margin: auto;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+}
+
+.view-note-card h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+    color: #111827;
+}
+
+.view-note-card p {
+    margin-top: 30px;
+    line-height: 1.9;
+    color: #4b5563;
+    font-size: 17px;
+    white-space: pre-wrap;
+}
+
+.view-note-dates {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: #6b7280;
+    font-size: 14px;
+}

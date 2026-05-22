@@ -116,6 +116,7 @@ const Home = () => {
               <div
                 className="note-card"
                 key={note._id}
+                onClick={() => navigate(`/note/${note._id}`)}
               >
 
                 <h3>{note.title}</h3>
@@ -154,11 +155,21 @@ const Home = () => {
 
                   <div className="note-actions">
 
-                    <button onClick={() => navigate(`/edit/${note._id}`)}>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(`/edit/${note._id}`);
+                      }}
+                    >
                       Edit
                     </button>
 
-                    <button onClick={() => handleDelete(note._id)}>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDelete(note._id);
+                      }}
+                    >
                       Delete
                     </button>
 

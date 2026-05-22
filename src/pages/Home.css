@@ -195,3 +195,19 @@
   font-size: 13px;
   color: #6b7280;
 }
+.empty-notes {
+  width: 100%;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.empty-notes h2 {
+  font-size: 32px;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.empty-notes p {
+  color: #6b7280;
+  font-size: 16px;
+}
