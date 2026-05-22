@@ -185,3 +185,13 @@
     color: white;
 }
 
+.note-dates {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.note-dates span {
+  font-size: 13px;
+  color: #6b7280;
+}

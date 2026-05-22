@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./Home.css";
 import { getAllNotes, deleteNote, searchNotes } from "../services/noteService";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { gsap } from "gsap";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ const Home = () => {
   const [search, setSearch] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const [selectedNoteId, setSelectedNoteId] = useState(null);
+
   useEffect(() => {
     fetchNotes();
 
@@ -107,9 +109,13 @@ const Home = () => {
 
 
         {
-          notes.map((note) => (
+          notes.map((note, index) => (
 
-            <div className="note-card" key={note._id}>
+            <div
+              className="note-card"
+              key={note._id}
+
+            >
 
               <h3>{note.title}</h3>
 
@@ -118,10 +124,29 @@ const Home = () => {
               </p>
 
               <div className="note-footer">
+                <div className="note-dates">
+                  <span>
+                    Created: &nbsp;
+                    {
+                      new Date(note.createdAt).toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })
+                    }
+                  </span>
 
-                <span>
-                  {new Date(note.updatedAt).toLocaleDateString()}
-                </span>
+                  <span>
+                    Updated: &nbsp;
+                    {
+                      new Date(note.updatedAt).toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })
+                    }
+                  </span>
+                </div>
 
                 <div className="note-actions">
                   <button onClick={() => navigate(`/edit/${note._id}`)}>
