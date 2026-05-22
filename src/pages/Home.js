@@ -8,6 +8,8 @@ const Home = () => {
   const navigate = useNavigate();
   const [notes, setNotes] = useState([]);
   const [search, setSearch] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedNoteId, setSelectedNoteId] = useState(null);
   useEffect(() => {
     fetchNotes();
 
@@ -23,15 +25,25 @@ const Home = () => {
     }
   }
 
-  const handleDelete = async (id) => {
+  const handleDelete = (id) => {
+
+    setSelectedNoteId(id);
+    setShowPopup(true);
+
+  };
+  const confirmDelete = async () => {
 
     try {
 
-      await deleteNote(id);
+      await deleteNote(selectedNoteId);
 
-      setNotes(notes.filter((note) => note._id !== id));
+      setNotes(
+        notes.filter((note) => note._id !== selectedNoteId)
+      );
 
       toast.success("Note deleted successfully");
+
+      setShowPopup(false);
 
     } catch (error) {
 
@@ -130,7 +142,43 @@ const Home = () => {
 
 
       </div>
+      {
+        showPopup && (
 
+          <div className="popup-overlay">
+
+            <div className="popup-box">
+
+              <h2>Delete Note</h2>
+
+              <p>
+                Are you sure you want to delete this note?
+              </p>
+
+              <div className="popup-buttons">
+
+                <button
+                  className="cancel-btn"
+                  onClick={() => setShowPopup(false)}
+                >
+                  Cancel
+                </button>
+
+                <button
+                  className="delete-btn"
+                  onClick={confirmDelete}
+                >
+                  Delete
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        )
+      }
     </div>
   );
 };
