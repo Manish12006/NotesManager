@@ -165,6 +165,7 @@ const Home = () => {
                     </button>
 
                     <button
+                      className="delete-note-btn"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleDelete(note._id);
