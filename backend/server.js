@@ -8,7 +8,9 @@ mongoose.connect(process.env.MONGO_URI)
 .catch((err)=> console.log(err))
 
 const express = require("express");
+
 const app = express();
+app.use(express.json());
 app.get("/", (req,res)=>{
     res.send("Backend Running!")
 })
