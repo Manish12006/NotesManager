@@ -51,6 +51,10 @@ router.get("/", async (req, res) => {
   }
 });
 
+export const createNote = async (noteData) => {
+    const response = await axios.post(API, noteData);
+    return response.data;
+};
 
 router.get("/search/query", async (req, res) => {
   try {

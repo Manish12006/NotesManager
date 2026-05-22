@@ -1,12 +1,16 @@
+import { Routes, Route } from "react-router-dom";
+import CreateNote from "./pages/CreateNote";
 
-import './App.css';
+import Home from "./pages/Home";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-        Notes management app
-    </div>
+    <Routes>
+
+      <Route path="/" element={<Home />} />
+      <Route path="/create" element={<CreateNote />} />
+    </Routes>
   );
-}
+};
 
 export default App;
