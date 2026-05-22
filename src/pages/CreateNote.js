@@ -44,7 +44,12 @@ const CreateNote = () => {
 
     return (
         <div className="create-note">
-
+            <button
+                className="back-btn"
+                onClick={() => navigate("/")}
+            >
+                Back
+            </button>
             <form className="note-form" onSubmit={handleSubmit}>
 
                 <h1>Create Note</h1>

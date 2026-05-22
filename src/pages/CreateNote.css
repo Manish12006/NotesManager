@@ -44,3 +44,20 @@
     border-radius: 10px;
     cursor: pointer;
 }
+
+.back-btn {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    border: none;
+    background: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.create-note {
+    position: relative;
+}
